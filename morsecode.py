@@ -16,19 +16,14 @@ if(choice==1):
             print(morsedata.get(i),end="  ")
 #Morse to text conversion
 elif(choice==2):
-    word=list()
     print("RULES:\n1. No space between dots and dashes expressing letter\n2. Double space between two letter's morse code\n3. 6 spaces between letters")
     morse_input=input("Enter morse code to be converted to text\n")
-    word=morse_input.split("  ")
-    i=0
-    while (i<=(len(word)-2)):
-        if(word[i]==word[i+1]):
-            word.pop(i)
-        else:
-            i+=1
-    for j in word:
-        if(j==''):
-            print(" ",end="")
-        for key,value in morsedata.items():
-            if(value==j):
-                print(key,end="")
+    morse_wordlist=morse_input.split("      ")
+    for morse_word in morse_wordlist:
+    	morse_letterlist=morse_word.split("  ")
+    	for morse_letter in morse_letterlist:
+    		for key,value in morsedata.items():
+    			if(value==morse_letter):
+    				print(key,end="")
+    	print(" ",end="")
+    	morse_letterlist.clear()
